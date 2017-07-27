@@ -1,0 +1,5 @@
+.ropeproject/
+*.pyc
+TODO.md
+tags
+config.mk
