@@ -13,12 +13,17 @@ def get_config(filepath="~/.twilio.cfg"):
         account=fake_account
         token=fake_token
         [sms]
-        from_number=fake_from_number
+        from_number=fake_
         dest_number=fake_destination_number
     """
     expanded_path = os.path.expanduser(filepath)
+
+    if not os.path.exists(expanded_path):
+        raise Exception("cannot find file at {0}".format(expanded_path))
+
     parser = SafeConfigParser()
     parser.read(expanded_path)
+    logging.debug("parser is {}".format(parser.sections()))
 
     TwilioConfig = namedtuple('TwilioConfig',
                               ['account',
